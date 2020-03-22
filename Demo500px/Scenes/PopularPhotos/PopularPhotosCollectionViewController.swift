@@ -9,43 +9,33 @@
 import UIKit
 import SDWebImage
 
-
-private let reuseIdentifier = "PhotoCollectionViewCell"
-private let headerResuseIdentifier = "PhotoHeaderCollectionViewCell"
+protocol PopularPhotosDisplayLogic: class {
+    /// Displays posts on the PopularPhotos Scene.
+    func displayPhotos(_ viewModels: [PhotosModel.ViewModel.PhotoViewModel])
+    /// Notifies  photo display to router of the PhotoDetail Scene.
+    func displaySelectedPhoto()
+}
 
 class PopularPhotosCollectionViewController: UICollectionViewController {
     
-    var photos:[Photo] = [] {
+    // MARK: - Properties
+    var interactor: PopularPhotosBusinessLogic?
+    var router: (PopularPhotosRoutingLogic & PopularPhotosDataPassing)?
+    
+    var photos:[PhotosModel.ViewModel.PhotoViewModel] = [] {
         didSet {
             self.collectionView.reloadData()
         }
     }
     
+    private let reuseIdentifier = "PhotoCollectionViewCell"
+    private let headerResuseIdentifier = "PhotoHeaderCollectionViewCell"
+
+
+    // MARK: - Object lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        getData()
-    }
-    
-    func getData() {
-        DataServer().getPopularPhotos(request: PhotosModel.Request()) { [weak self] response in
-            guard let self = self else { return }
-            switch response {
-            case .success(let photosModel):
-                self.photos = photosModel.photos
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+        interactor?.getPopularPhotos()
     }
     
 
@@ -66,13 +56,13 @@ class PopularPhotosCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: headerResuseIdentifier, for: indexPath) as? PhotoHeaderCollectionViewCell  {
-                cell.setPhoto(photos[indexPath.row].imagePath[0])
+                cell.setPhoto(photos[indexPath.row].imagePath)
                 return cell
                 
             }
         } else {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PhotoCollectionViewCell  {
-                     cell.setPhoto(photos[indexPath.row].imagePath[0])
+                     cell.setPhoto(photos[indexPath.row].imagePath)
                      return cell
             }
         }
@@ -102,4 +92,14 @@ extension PopularPhotosCollectionViewController: UICollectionViewDelegateFlowLay
         
     }
 
+}
+
+extension PopularPhotosCollectionViewController: PopularPhotosDisplayLogic {
+    func displayPhotos(_ viewModels: [PhotosModel.ViewModel.PhotoViewModel]) {
+        self.photos = viewModels
+    }
+    
+    func displaySelectedPhoto() {
+        
+    }
 }

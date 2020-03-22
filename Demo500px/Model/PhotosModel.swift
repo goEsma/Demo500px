@@ -37,6 +37,21 @@ struct PhotosModel {
         
         struct PhotoViewModel {
             var imagePath: String
+            var width: Int
+            var height: Int
+            var location: String
         }
+    }
+}
+
+
+extension PhotosModel.Response {
+    func getViewModel() -> PhotosModel.ViewModel {
+        var viewModels: [PhotosModel.ViewModel.PhotoViewModel] = []
+        photos.forEach { photo in
+            let photoVM = PhotosModel.ViewModel.PhotoViewModel(imagePath: photo.imagePath[0], width: photo.width, height: photo.height, location: photo.location ?? "Unknown location")
+            viewModels.append(photoVM)
+        }
+        return PhotosModel.ViewModel(photos: viewModels)
     }
 }

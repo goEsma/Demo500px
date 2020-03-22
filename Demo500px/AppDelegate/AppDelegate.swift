@@ -12,9 +12,16 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var appRouter: AppRouter?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
+        
+        let navController = UINavigationController()
+        appRouter = AppRouter(with: navController)
+        appRouter?.start()
+        
+        window?.rootViewController = navController
+        
         return true
     }
 }

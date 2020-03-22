@@ -194,6 +194,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="AFJ-Dh-Zts"/>
                     <connections>
+                        <outlet property="closeButton" destination="V9c-gz-8Mc" id="049-P2-yNf"/>
                         <outlet property="descriptionLabel" destination="Bpk-xe-I65" id="50L-5l-NBL"/>
                         <outlet property="imageView" destination="qDp-aG-C9Q" id="4Hh-WN-OlG"/>
                         <outlet property="infoView" destination="BXr-3t-dGq" id="Ear-ar-keV"/>

@@ -13,6 +13,7 @@ class PhotoDetailViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var infoView: UIView!
     
     var viewModel: PhotosModel.ViewModel.PhotoViewModel?
@@ -38,5 +39,6 @@ class PhotoDetailViewController: UIViewController {
 
     @IBAction func didTap(_ sender: Any) {
         infoView.isHidden = !infoView.isHidden
+        closeButton.isHidden = !closeButton.isHidden
     }
 }

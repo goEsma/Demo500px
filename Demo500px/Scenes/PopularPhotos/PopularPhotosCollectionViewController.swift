@@ -16,15 +16,15 @@ protocol PopularPhotosDisplayLogic: class {
     func displaySelectedPhoto()
 }
 
-class PopularPhotosCollectionViewController: UICollectionViewController {
-    
+class PopularPhotosCollectionViewController: UICollectionViewController, PhotoCellSizeable {
+
     // MARK: - Properties
     var interactor: PopularPhotosBusinessLogic?
     var router: (PopularPhotosRoutingLogic & PopularPhotosDataPassing)?
     
     var photos:[PhotosModel.ViewModel.PhotoViewModel] = [] {
         didSet {
-            self.cellSizes = self.getCellSizes(for: photos)
+            self.cellSizes = getCellSizes(photos, for: self.view)
         }
     }
     private var cellSizes:[CGSize] = [] {
@@ -52,42 +52,6 @@ class PopularPhotosCollectionViewController: UICollectionViewController {
         indicator.center = collectionView.center
         indicator.startAnimating()
         collectionView.backgroundView = indicator
-    }
-    
-    private func getCellSizes(for photos: [PhotosModel.ViewModel.PhotoViewModel]) -> [CGSize] {
-        var i = 0
-        var sizes:[CGSize] = []
-        
-        let fullWidth = self.view.frame.size.width - 16
-        
-        while i < photos.count - 1 {
-            let size1 = CGSize(width: CGFloat(photos[i].width),
-                               height: CGFloat(photos[i].height))
-            let size2 = CGSize(width: CGFloat(photos[i+1].width),
-                               height: CGFloat(photos[i+1].height))
-            
-            let ratio1 = size1.width / size1.height
-            let ratio2 = size2.width / size2.height
-            
-            let width1 = fullWidth*ratio1/(ratio1+ratio2)
-            let width2 = fullWidth*ratio2/(ratio1+ratio2)
-            let height = fullWidth/(ratio1+ratio2)
-            
-            let newSize1 = CGSize(width: width1, height: height)
-            let newSize2 = CGSize(width: width2, height: height)
-            
-            sizes.append(newSize1)
-            sizes.append(newSize2)
-            
-            i += 2
-        }
-        if photos.count % 2 != 0 {
-            guard let photo = photos.last else { return sizes }
-            let height = fullWidth * CGFloat(photo.height) / CGFloat(photo.width)
-            let size = CGSize(width: fullWidth, height: height)
-            sizes.append(size)
-        }
-        return sizes
     }
     
     // MARK: - UICollectionViewDataSource

@@ -35,7 +35,7 @@ struct PhotosModel {
     struct ViewModel {
         let photos: [PhotoViewModel]?
         
-        struct PhotoViewModel {
+        struct PhotoViewModel: Sizeable {
             var imagePath: String
             var width: Int
             var height: Int

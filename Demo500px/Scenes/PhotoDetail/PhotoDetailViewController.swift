@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import SDWebImage
 
-class PhotoDetailViewController: UIViewController {
+class PhotoDetailViewController: UIViewController, PhotoLoader {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -26,21 +25,14 @@ class PhotoDetailViewController: UIViewController {
     
     func setupUI() {
         guard let viewModel = viewModel else { return }
-        let url = URL(string: viewModel.imagePath)
-        imageView?.sd_imageIndicator = SDWebImageActivityIndicator.gray
-        imageView.sd_setImage(with: url, completed: nil)
-        
-        let profileUrl = URL(string: viewModel.userImagePath)
-        userImageView?.sd_imageIndicator = SDWebImageActivityIndicator.gray
-        userImageView?.sd_setImage(with: profileUrl, completed: nil)
-        
+        setPhoto(viewModel.imagePath, on: imageView)
+        setPhoto(viewModel.userImagePath, on: userImageView)
+
         titleLabel.text = "by \(viewModel.imageName)"
-        
         var descriptionText = viewModel.userFullName
         if let location = viewModel.location, location != "" {
             descriptionText += " - " + location
         }
-        
         descriptionLabel.text = descriptionText
     }
 

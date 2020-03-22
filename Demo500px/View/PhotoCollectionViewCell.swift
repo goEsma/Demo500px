@@ -6,19 +6,15 @@
 //  Copyright © 2020 EsmaGO. All rights reserved.
 //
 
-import SDWebImage
+import UIKit
 
-class PhotoCollectionViewCell: UICollectionViewCell {
+class PhotoCollectionViewCell: UICollectionViewCell, PhotoLoader {
     
     @IBOutlet weak var imageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
-    func setPhoto(_ url: String) {
-        guard let imageUrl = URL(string: url) else { return }
-        imageView?.sd_imageIndicator = SDWebImageActivityIndicator.gray
-        imageView?.sd_setImage(with: imageUrl)
-    }
 }
+
+

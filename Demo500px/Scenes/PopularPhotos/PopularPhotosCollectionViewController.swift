@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SDWebImage
 
 protocol PopularPhotosDisplayLogic: class {
     /// Displays posts on the PopularPhotos Scene.

@@ -10,12 +10,12 @@ import Alamofire
 
 /// List of photos endpoints that this app uses.
 enum PhotosEndpoint {
-    case getPhotos(request: PhotosModel.Request)
+    case getPopularPhotos(request: PhotosModel.Request)
 }
 
 extension PhotosEndpoint: Endpoint {
     var path: String {
-        return ""
+        return "photos"
     }
     
     var method: HTTPMethod {
@@ -24,7 +24,10 @@ extension PhotosEndpoint: Endpoint {
     
     /// returns request parameters of the selected api.
     var parameters: [String : Any] {
-        return [:]
+        switch self {
+        case .getPopularPhotos:
+            return ["feature":"popular"]
+        }
     }
     
     /// returns the parameters encoding type of the selected api.

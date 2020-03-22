@@ -15,6 +15,8 @@ protocol Coordinator {
     func start()
 }
 
+/// Initial router of the app where first scene to be shown is decided and navigated.
+/// - Based on users login status, either show login page or main page.
 final class AppRouter: Coordinator {
     
     var childCoordinators: [Coordinator] = []
@@ -29,10 +31,12 @@ final class AppRouter: Coordinator {
         showPopularPhotosScene()
     }
     
+    /// Configures `PopularPhotosCollectionViewContoller` and presents it.
     func showPopularPhotosScene() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let popularPhotoVC = storyboard.instantiateViewController(withIdentifier: "PopularPhotosCollectionViewController") as? PopularPhotosCollectionViewController else { return }
         
+        // Setting up VIP cycle. 
         let interactor = PopularPhotosInteractor()
         let presenter = PopularPhotosPresenter()
         let router = PopularPhotosRouter()

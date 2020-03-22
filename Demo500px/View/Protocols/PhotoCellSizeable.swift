@@ -13,10 +13,16 @@ protocol PhotoCellSizeable {
 }
 
 extension PhotoCellSizeable {
+    /// Enables conforming types to calculate cell sizes based on given `Sizeable` array.
+    /// - Parameters:
+    ///   - array: A `Sizeable` array that has width and height for each item.
+    ///   - view: A `UIView`  provided, to calculate max width two cells can share.
+    ///
     func getCellSizes(_ array: [Sizeable], for view: UIView) -> [CGSize] {
         var i = 0
         var sizes:[CGSize] = []
         
+        // FIXME: Make this more generic. Right now the insets are set from the storyboard.
         let fullWidth = view.frame.size.width - 16
         
         while i < array.count - 1 {

@@ -21,7 +21,7 @@
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="938-Du-pLu">
                             <size key="itemSize" width="414" height="160"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="1"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="5" minY="0.0" maxX="5" maxY="5"/>
                         </collectionViewFlowLayout>
                         <cells>
@@ -103,10 +103,6 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="vbg-1e-gav">
-                            <rect key="frame" x="0.0" y="540" width="414" height="1"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="MYY-6v-1pn" id="D9j-Ll-CMM"/>
                             <outlet property="delegate" destination="MYY-6v-1pn" id="Old-ZV-u1N"/>
@@ -133,15 +129,15 @@
                                 <rect key="frame" x="0.0" y="746" width="414" height="150"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="X3b-gO-17S">
-                                        <rect key="frame" x="16" y="56" width="382" height="52"/>
+                                        <rect key="frame" x="16" y="36" width="382" height="52"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Goldern Beginning" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yQ-S1-ik7">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Goldern Beginning" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yQ-S1-ik7">
                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by Daniel Gasteger" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bpk-xe-I65">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by Daniel Gasteger" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bpk-xe-I65">
                                                 <rect key="frame" x="0.0" y="35" width="382" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -155,7 +151,7 @@
                                     <constraint firstItem="X3b-gO-17S" firstAttribute="leading" secondItem="BXr-3t-dGq" secondAttribute="leadingMargin" constant="8" id="0cR-yM-akk"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="X3b-gO-17S" secondAttribute="trailing" constant="8" id="6A2-YL-EXT"/>
                                     <constraint firstAttribute="height" constant="150" id="UXr-b9-IXq"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="X3b-gO-17S" secondAttribute="bottom" id="iU7-TJ-2Dw"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="X3b-gO-17S" secondAttribute="bottom" constant="20" id="iU7-TJ-2Dw"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9c-gz-8Mc">

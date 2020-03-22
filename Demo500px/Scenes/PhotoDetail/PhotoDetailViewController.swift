@@ -29,8 +29,14 @@ class PhotoDetailViewController: UIViewController {
         imageView?.sd_imageIndicator = SDWebImageActivityIndicator.gray
         imageView.sd_setImage(with: url, completed: nil)
         
-        titleLabel.text = viewModel.location
-        descriptionLabel.text = viewModel.imagePath
+        titleLabel.text = "by \(viewModel.imageName)"
+        
+        var descriptionText = viewModel.userFullName
+        if let location = viewModel.location {
+            descriptionText += " - " + location
+        }
+        
+        descriptionLabel.text = descriptionText
     }
 
     @IBAction func closeButtonTapped(_ sender: Any) {

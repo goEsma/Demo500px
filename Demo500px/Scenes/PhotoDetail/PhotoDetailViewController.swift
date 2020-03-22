@@ -15,6 +15,7 @@ class PhotoDetailViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var infoView: UIView!
+    @IBOutlet weak var userImageView: UIImageView!
     
     var viewModel: PhotosModel.ViewModel.PhotoViewModel?
     
@@ -29,10 +30,14 @@ class PhotoDetailViewController: UIViewController {
         imageView?.sd_imageIndicator = SDWebImageActivityIndicator.gray
         imageView.sd_setImage(with: url, completed: nil)
         
+        let profileUrl = URL(string: viewModel.userImagePath)
+        userImageView?.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        userImageView?.sd_setImage(with: profileUrl, completed: nil)
+        
         titleLabel.text = "by \(viewModel.imageName)"
         
         var descriptionText = viewModel.userFullName
-        if let location = viewModel.location {
+        if let location = viewModel.location, location != "" {
             descriptionText += " - " + location
         }
         

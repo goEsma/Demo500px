@@ -114,6 +114,7 @@ class PopularPhotosCollectionViewController: UICollectionViewController {
         } else {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PhotoCollectionViewCell  {
                 cell.setPhoto(photos[indexPath.row].imagePath)
+                cell.dropShadow()
                 return cell
             }
         }

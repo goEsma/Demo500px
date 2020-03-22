@@ -35,10 +35,21 @@ class PopularPhotosCollectionViewController: UICollectionViewController {
     // MARK: - Object lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        addIndicator()
         interactor?.getPopularPhotos()
     }
     
+    // MARK: - Helpers
 
+    /// Adds activity indicator on collectionView.
+    private func addIndicator() {
+        let indicator = UIActivityIndicatorView(style: .whiteLarge)
+        indicator.color = .black
+        indicator.center = collectionView.center
+        indicator.startAnimating()
+        collectionView.backgroundView = indicator
+    }
+    
     // MARK: - UICollectionViewDataSource
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -97,6 +108,7 @@ extension PopularPhotosCollectionViewController: UICollectionViewDelegateFlowLay
 extension PopularPhotosCollectionViewController: PopularPhotosDisplayLogic {
     func displayPhotos(_ viewModels: [PhotosModel.ViewModel.PhotoViewModel]) {
         self.photos = viewModels
+        collectionView.backgroundView = nil
     }
     
     func displaySelectedPhoto() {

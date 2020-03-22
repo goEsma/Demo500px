@@ -83,6 +83,9 @@ class PopularPhotosCollectionViewController: UICollectionViewController {
 
     // MARK: - UICollectionViewDelegate
 
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        router?.showPhotoDetail(photos[indexPath.row] )
+    }
 
 }
 

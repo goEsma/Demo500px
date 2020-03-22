@@ -26,6 +26,10 @@ final class AppRouter: Coordinator {
     }
     
     func start() {
+        showPopularPhotosScene()
+    }
+    
+    func showPopularPhotosScene() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let popularPhotoVC = storyboard.instantiateViewController(withIdentifier: "PopularPhotosCollectionViewController") as? PopularPhotosCollectionViewController else { return }
         
@@ -41,9 +45,5 @@ final class AppRouter: Coordinator {
         router.dataStore = interactor
         
         navigationController.pushViewController(popularPhotoVC, animated: true)
-    }
-    
-    func showPopularPhotosScene() {
-        
     }
 }

@@ -25,7 +25,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" reuseIdentifier="PhotoHeaderCollectionViewCell" id="Wcp-oW-hEf" customClass="PhotoHeaderCollectionViewCell" customModule="Demo500px" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" reuseIdentifier="PhotoHeaderCollectionViewCell" id="Wcp-oW-hEf" customClass="PhotoHeaderCollectionViewCell" customModule="Demo500px" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="370"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="aYe-21-zfu">
@@ -100,7 +100,6 @@
                                 <size key="customSize" width="169" height="160"/>
                                 <connections>
                                     <outlet property="imageView" destination="Ncb-hT-eeI" id="cJX-df-qC2"/>
-                                    <segue destination="RpT-es-YTi" kind="presentation" modalPresentationStyle="fullScreen" id="sbk-dD-VXk"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -119,16 +118,16 @@
             </objects>
             <point key="canvasLocation" x="1782.608695652174" y="107.8125"/>
         </scene>
-        <!--View Controller-->
+        <!--Photo Detail View Controller-->
         <scene sceneID="2sR-vJ-PZb">
             <objects>
-                <viewController id="RpT-es-YTi" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PhotoDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RpT-es-YTi" customClass="PhotoDetailViewController" customModule="Demo500px" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PCi-xL-ZSe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qDp-aG-C9Q">
-                                <rect key="frame" x="0.0" y="224" width="414" height="448"/>
+                                <rect key="frame" x="0.0" y="204" width="414" height="488"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BXr-3t-dGq">
                                 <rect key="frame" x="0.0" y="746" width="414" height="150"/>
@@ -165,34 +164,50 @@
                                     <constraint firstAttribute="height" constant="50" id="4ud-JC-xqz"/>
                                     <constraint firstAttribute="width" constant="50" id="Njk-Vn-MtP"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" image="xmark" catalog="system">
+                                <state key="normal" title="X">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="closeButtonTapped:" destination="RpT-es-YTi" eventType="touchUpInside" id="XlW-TB-OqH"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="V9c-gz-8Mc" firstAttribute="leading" secondItem="qlK-J9-msV" secondAttribute="leading" constant="10" id="Bva-qP-8V8"/>
                             <constraint firstItem="qDp-aG-C9Q" firstAttribute="centerY" secondItem="PCi-xL-ZSe" secondAttribute="centerY" id="Msh-Mf-uRK"/>
                             <constraint firstItem="qDp-aG-C9Q" firstAttribute="leading" secondItem="qlK-J9-msV" secondAttribute="leading" id="UAh-8J-MqX"/>
                             <constraint firstAttribute="bottom" secondItem="BXr-3t-dGq" secondAttribute="bottom" id="drp-Kd-86i"/>
+                            <constraint firstItem="qDp-aG-C9Q" firstAttribute="top" secondItem="V9c-gz-8Mc" secondAttribute="bottom" constant="100" id="kgr-XS-SwC"/>
                             <constraint firstItem="BXr-3t-dGq" firstAttribute="leading" secondItem="qlK-J9-msV" secondAttribute="leading" id="nI2-Hl-bH9"/>
-                            <constraint firstItem="qDp-aG-C9Q" firstAttribute="height" secondItem="PCi-xL-ZSe" secondAttribute="height" multiplier="0.5" id="nIt-0Q-bcw"/>
                             <constraint firstItem="BXr-3t-dGq" firstAttribute="trailing" secondItem="qlK-J9-msV" secondAttribute="trailing" id="rjQ-EE-8rE"/>
                             <constraint firstItem="qlK-J9-msV" firstAttribute="trailing" secondItem="qDp-aG-C9Q" secondAttribute="trailing" id="uhw-Qr-2d6"/>
                             <constraint firstItem="V9c-gz-8Mc" firstAttribute="top" secondItem="qlK-J9-msV" secondAttribute="top" constant="10" id="xdj-s7-ndS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qlK-J9-msV"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="is3-YU-5pR" appends="YES" id="R22-TV-eWB"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="AFJ-Dh-Zts"/>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="Bpk-xe-I65" id="50L-5l-NBL"/>
+                        <outlet property="imageView" destination="qDp-aG-C9Q" id="4Hh-WN-OlG"/>
+                        <outlet property="infoView" destination="BXr-3t-dGq" id="Ear-ar-keV"/>
+                        <outlet property="titleLabel" destination="3yQ-S1-ik7" id="7GW-ao-ddK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gr5-YV-ovN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="is3-YU-5pR">
+                    <connections>
+                        <action selector="didTap:" destination="RpT-es-YTi" id="hcu-al-rTw"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2634.7826086956525" y="107.8125"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="xmark" catalog="system" width="64" height="56"/>
-    </resources>
 </document>

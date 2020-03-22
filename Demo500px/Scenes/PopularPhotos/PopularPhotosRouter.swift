@@ -6,10 +6,10 @@
 //  Copyright © 2020 EsmaGO. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol PopularPhotosRoutingLogic {
-    func showPhotoDetail()
+    func showPhotoDetail(_ photoDetail: PhotosModel.ViewModel.PhotoViewModel)
 }
 
 protocol PopularPhotosDataPassing {
@@ -20,7 +20,11 @@ final class PopularPhotosRouter: PopularPhotosRoutingLogic, PopularPhotosDataPas
     var dataStore: PopularPhotosDataStore?
     weak var viewController: PopularPhotosCollectionViewController?
     
-    func showPhotoDetail() {
-        
+    func showPhotoDetail(_ photoDetail: PhotosModel.ViewModel.PhotoViewModel) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let photoDetailVC = storyboard.instantiateViewController(withIdentifier: "PhotoDetailViewController") as? PhotoDetailViewController else { return }
+        photoDetailVC.viewModel = photoDetail
+        photoDetailVC.modalPresentationStyle = .fullScreen
+        viewController?.present(photoDetailVC, animated: true, completion: nil)
     }
 }

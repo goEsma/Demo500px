@@ -17,6 +17,9 @@ struct PhotosModel {
     }
     
     struct Response: Decodable {
+        enum RootCodingKeys: String, CodingKey {
+            case photos
+        }
         var photos: [Photo]
         
         init(photos: [Photo]) {
@@ -24,7 +27,8 @@ struct PhotosModel {
         }
         
         public init(from decoder: Decoder) throws {
-            self.photos = try [Photo](from: decoder)
+            let rootContainer = try decoder.container(keyedBy: RootCodingKeys.self)
+            self.photos = try rootContainer.decode([Photo].self, forKey: .photos)
         }
     }
     
